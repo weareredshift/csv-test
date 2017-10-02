@@ -69,10 +69,12 @@ module.exports = function(yml, stream, validators) {
     if (errorCount) {
       var label = errorCount === 1 ? ' error' : ' errors';
       console.log(chalk.red(errorCount + label + ' found'));
-      process.exit(1);
+      // process.exit(1);
+      return false;
     } else {
       console.log(chalk.green('no errors found'));
-      process.exit(0);
+      // process.exit(0);
+      return true;
     }
   }
 
