@@ -5,7 +5,7 @@ var _ = require('lodash'),
     validator = require('validator'),
     transform = require('stream-transform');
 
-module.exports = function(yml, stream, validators) {
+module.exports = function(yml, stream, validators, finishCallback) {
 
   var index = 0,
       errorCount = 0,
@@ -70,11 +70,11 @@ module.exports = function(yml, stream, validators) {
       var label = errorCount === 1 ? ' error' : ' errors';
       console.log(chalk.red(errorCount + label + ' found'));
       // process.exit(1);
-      return false;
+      finishCallback(false);
     } else {
       console.log(chalk.green('no errors found'));
       // process.exit(0);
-      return true;
+      finishCallback(true);
     }
   }
 
